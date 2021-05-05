@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  container: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
   bannerContainer: {
     width: '100%',
     height: 300,
@@ -19,7 +25,6 @@ const styles = StyleSheet.create({
   },
   containerTitle: {
     textAlign: 'center',
-    padding: 15,
     marginBottom: 20,
   },
   containerTitleText: {
@@ -28,11 +33,11 @@ const styles = StyleSheet.create({
     color: '#8257E5',
   },
   formContainer: {
-    width: '93%',
+    width: '100%',
   },
   inputArea: {
     flexDirection: 'row',
-    width: '95%',
+    width: '100%',
     alignItems: 'center',
     height: 50,
     borderBottomWidth: 1,
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    width: '95%',
+    width: '100%',
     backgroundColor: '#8257E5',
     padding: 10,
     height: 50,
