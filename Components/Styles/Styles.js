@@ -1,16 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  header: {
+    height: 80,
+    paddingLeft: 10,
+    justifyContent: 'flex-end',
+  },
   main: {
-    flex: 1,
     backgroundColor: '#FFF',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
+  },
+  back: {
+    fontSize: 40,
+    color: '#8257E5',
   },
   container: {
-    width: '100%',
-    alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     padding: 20,
   },
   bannerContainer: {
