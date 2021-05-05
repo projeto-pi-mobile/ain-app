@@ -33,7 +33,7 @@ export default function ResetPass({ navigation }) {
           <View style={styles.containerTitle}>
             <Text style={styles.containerTitleText}>Resetar senha</Text>
             <Text>
-              Insira o e-mail associado com a sua conta e recebe em seu e-mail
+              Insira o e-mail associado com a sua conta e receba em seu e-mail
               as instruções para resetar o seu password
             </Text>
           </View>
