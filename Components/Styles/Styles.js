@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     justifyContent: 'flex-end',
   },
+
   main: {
     backgroundColor: '#FFF',
     flex: 1,
@@ -14,23 +15,29 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#8257E5',
   },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    padding: 20,
-  },
   bannerContainer: {
     width: '100%',
-    height: 300,
+    flex: 0.5,
   },
   bannerContainerImage: {
     flex: 1,
     width: undefined,
     height: undefined,
-    resizeMode: 'contain',
   },
+  formContainerText: {
+    width: '100%',
+    paddingBottom: 20,
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#8257E5',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
+
   containerTitle: {
     textAlign: 'center',
     marginBottom: 20,
@@ -42,6 +49,10 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '100%',
+    flex: 1,
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   inputArea: {
     flexDirection: 'row',
@@ -57,6 +68,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F8FA',
     padding: 10,
     marginBottom: 10,
+  },
+  input: {
+    width: '100%',
   },
   button: {
     width: '100%',
