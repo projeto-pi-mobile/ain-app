@@ -85,6 +85,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#F7F8FA',
   },
+  buttonIcon: {
+    fontSize: 15,
+    color: '#F7F8FA',
+    marginRight: 10,
+  },
+  itemProfile: {
+    fontSize: 15,
+    alignItems: 'left',
+    marginTop: 10,
+    marginBottom: 3,
+    fontWeight: 'bold',
+  },
+  scrollView: {
+    marginHorizontal: 20,
+  },
 });
 
 export default styles;
