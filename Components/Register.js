@@ -17,6 +17,7 @@ export default function Register({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [cpf, setCpf] = React.useState('');
   const [password, setPassword] = React.useState('');
+  
 
   return (
     <>

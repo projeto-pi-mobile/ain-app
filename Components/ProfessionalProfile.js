@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -9,11 +9,28 @@ import {
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 import styles from './Styles/Styles';
+import ainApi from '../services/ainApi';
 
-export default function ProfessionalProfile({ navigation }) {
+export default function ProfessionalProfile({ navigation }, props) {
+  
+  const [users, setUsers] = useState({})
+  const [atividades, setAtividades] = useState({})
 
+  
+  //Toda vez que carregar o componente ele executa isso
+  useEffect(()=>{
+    
+    ainApi.get('users/1').then(results => {
+      setUsers(results.data)
+      setAtividades(results.data.atividades)
+    })
+    
+    
+  }, [])
+  
+  console.log(users)
+  console.log(atividades)
   return (
     <>
       <SafeAreaView style={styles.main}>
@@ -33,28 +50,48 @@ export default function ProfessionalProfile({ navigation }) {
               <Text style={styles.containerTitleText}>Detalhes do Usuário</Text>
 
               <Text style={styles.itemProfile}>Nome</Text>
-              <Text>Pedro Costa da Silva</Text>
+              <Text>{users.nome}</Text>
             
               <Text style={styles.itemProfile}>E-mail</Text>
-              <Text>pedro.silva@gmail.com</Text>
+              <Text>{users.email}</Text>
 
               <Text style={styles.itemProfile}>CPF</Text>
-              <Text>345.231-76</Text>
+              <Text>{users.cpf}</Text>
 
               <Text style={styles.itemProfile}>Telefone</Text>
-              <Text>(61) 96271-4092</Text>
+              <Text>{users.telefone}</Text>
 
               <Text style={styles.itemProfile}>Minhas atividades</Text>
-              <Text>Atividade 1</Text>
-              <Text>Atividade 2</Text>
-              <Text>Atividade 3</Text>
-              <Text>Atividade 4</Text>
-              <Text>Atividade 5</Text>
+              {atividades[0] &&
+                <React.Fragment key={0}>
+                    <Text>{atividades[0]}</Text>
+                </React.Fragment>
+              }
+              {atividades[1] &&
+                <React.Fragment key={1}>
+                    <Text>{atividades[1]}</Text>
+                </React.Fragment>
+              }
+              {atividades[2] &&
+                <React.Fragment key={2}>
+                    <Text>{atividades[2]}</Text>
+                </React.Fragment>
+              }
+              {atividades[3] &&
+                <React.Fragment key={3}>
+                    <Text>{atividades[3]}</Text>
+                </React.Fragment>
+              }
+              {atividades[4] &&
+                <React.Fragment key={4}>
+                    <Text>{atividades[4]}</Text>
+                </React.Fragment>
+              }
             </View>
             <View>
               <Text style={styles.itemProfile}>Biografia</Text>
               <View  style={styles.container}>
-                <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen.</Text>
+                <Text>{users.biografia}</Text>
               </View>
             </View>
             <View style={styles.formContainer}>
