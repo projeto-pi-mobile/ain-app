@@ -15,7 +15,7 @@ import ainApi from '../services/ainApi';
 export default function ProfessionalProfile({ navigation }, props) {
   
   const [users, setUsers] = useState({})
-  const [atividades, setAtividades] = useState({})
+  const [atividades, setAtividades] = useState([])
 
   
   //Toda vez que carregar o componente ele executa isso
@@ -62,31 +62,10 @@ export default function ProfessionalProfile({ navigation }, props) {
               <Text>{users.telefone}</Text>
 
               <Text style={styles.itemProfile}>Minhas atividades</Text>
-              {atividades[0] &&
-                <React.Fragment key={0}>
-                    <Text>{atividades[0]}</Text>
-                </React.Fragment>
-              }
-              {atividades[1] &&
-                <React.Fragment key={1}>
-                    <Text>{atividades[1]}</Text>
-                </React.Fragment>
-              }
-              {atividades[2] &&
-                <React.Fragment key={2}>
-                    <Text>{atividades[2]}</Text>
-                </React.Fragment>
-              }
-              {atividades[3] &&
-                <React.Fragment key={3}>
-                    <Text>{atividades[3]}</Text>
-                </React.Fragment>
-              }
-              {atividades[4] &&
-                <React.Fragment key={4}>
-                    <Text>{atividades[4]}</Text>
-                </React.Fragment>
-              }
+              
+              {atividades?.map(atividade=>(
+                <Text>{atividade}</Text>
+              ))}
             </View>
             <View>
               <Text style={styles.itemProfile}>Biografia</Text>
