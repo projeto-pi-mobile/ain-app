@@ -26,7 +26,7 @@ export default function ResetPass({ navigation }) {
           <Image
             resizeMode="cover"
             style={styles.bannerContainerImage}
-            source={require('../assets/img/banner_reset.png')}
+            source={require('../../assets/img/banner_reset.png')}
           />
         </View>
         <View style={styles.container}>

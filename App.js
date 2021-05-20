@@ -1,39 +1,28 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import ResetPass from './Components/ResetPass';
-import Register from './Components/Register';
-import Login from './Components/Login';
+import { UserProvider } from './src/UseContext';
+import Navigation from './src/Components/Navigation';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import styles from './src/Components/Styles/Styles';
 
-const Stack = createStackNavigator();
+const theme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#8257E5',
+    accent: '#04D361',
+  },
+};
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerShown: false,
-          }}
-        />
-
-        <Stack.Screen
-          name="ResetPass"
-          component={ResetPass}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <PaperProvider theme={theme}>
+      <UserProvider>
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
+      </UserProvider>
+    </PaperProvider>
   );
 }
