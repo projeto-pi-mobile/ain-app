@@ -101,7 +101,7 @@ const ActivityCard = (props) => {
               <IconButton
                 icon="square-edit-outline"
                 color={"#8257E5"}
-                onPress={() => navigation.push("NewActivity", { name: item.name, description: item.description})}
+                onPress={() => navigation.push("NewActivity", { id: item.id})}
               />
             </Card.Actions>
           </Card>

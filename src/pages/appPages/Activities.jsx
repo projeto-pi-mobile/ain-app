@@ -12,7 +12,6 @@ import ActivityCard from "../../Elements/ActivityCard";
 
 import { useAuth } from "../../contexts/auth";
 import api from "../../service/api";
-import { ceil } from "react-native-reanimated";
 
 const Activities = () => {
   const [refreshing, setRefreshing] = React.useState(false);
