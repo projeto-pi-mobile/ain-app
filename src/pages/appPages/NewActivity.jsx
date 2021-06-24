@@ -24,7 +24,7 @@ const NewActivities = ({ route }) => {
     control,
     handleSubmit,
     formState: { errors },
-  
+    setValue,
   } = useForm();
 
   React.useEffect(() => {
@@ -33,7 +33,7 @@ const NewActivities = ({ route }) => {
       api
         .get(`jobs/${id}`)
         .then((response) => {
-          setData(response.data)
+          setData(response.data);
         })
         .catch((err) => {
           console.log(err);
@@ -42,12 +42,12 @@ const NewActivities = ({ route }) => {
           }, 5000);
         });
     }
-
   }, [route]);
 
-
-
-
+  React.useEffect(() => {
+    setValue("name", data.name);
+    setValue("description", data.description);
+  }, [data]);
 
   async function onSubmit(data) {
     const token = await AsyncStorage.getItem("@AINAuth:token");
@@ -58,20 +58,19 @@ const NewActivities = ({ route }) => {
         name,
         user_id: user.id,
       };
-
-      api
-        .post("jobs", finalData)
-        .then((response) => {
-          if (response.status == 200) {
-            navigation.navigate("Success");
+      const { id } = route.params;
+     
+        const results = id ? api.put(`jobs/${id}`, finalData) : api.post("jobs", finalData);
+        results.then(response => {
+          if(response.status === 200) {
+            navigation.navigate("Dashboard")
           }
-        })
-        .catch((err) => {
+        }).catch(err => {
           setError(err.response.data.message);
           setTimeout(() => {
-            setError(null);
-          }, 5000);
-        });
+            setError("")
+          }, 5000)
+        })
     }
   }
 
@@ -143,7 +142,7 @@ const NewActivities = ({ route }) => {
               disabled
               style={styles.button}
             >
-              CADASTRANDO...
+              REGISTRANDO...
             </Button>
           ) : (
             <Button
@@ -151,7 +150,7 @@ const NewActivities = ({ route }) => {
               onPress={handleSubmit(onSubmit)}
               style={styles.button}
             >
-              CADASTRAR ATIVIDADE
+              REGISTRAR
             </Button>
           )}
 

@@ -59,7 +59,7 @@ const AppRoutes = () => {
         name="NewActivity"
         component={NewActivity}
         options={{
-          headerTitle: "Nova atividade",
+          headerTitle: "Atividade",
           headerStyle: {
             backgroundColor: "#8257E5",
           },

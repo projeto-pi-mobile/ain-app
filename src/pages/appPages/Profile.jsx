@@ -92,7 +92,6 @@ const Profile = () => {
         </Card>
       </View>
 
-      <Button onPress={() => ""}>Editar Perfil</Button>
     </SafeAreaView>
   );
 };

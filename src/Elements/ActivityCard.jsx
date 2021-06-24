@@ -14,12 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "../service/api";
 import { useNavigation } from "@react-navigation/core";
 
-
-
-
 const ActivityCard = (props) => {
-  const [error, setError] = React.useState(null);
-  const [success, setSuccess] = React.useState(null);
   const navigation = useNavigation();
 
   async function handleDelete(item) {
@@ -29,10 +24,12 @@ const ActivityCard = (props) => {
         .delete(`jobs/${item}`)
         .then((response) => {
           if (response.status === 200) {
-            setSuccess("Atividade excluída com sucesso");
-            setTimeout(() => {
-              setSuccess('');
-            }, 5000);
+            Alert.alert("Atividade excluida!", "A atividade foi excluída com sucesso", [
+              {
+                text: "Ok",
+                onPress: () => null,
+              },
+            ]);
           }
         })
         .catch((err) => {
