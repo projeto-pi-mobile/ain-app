@@ -1,6 +1,7 @@
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "../service/api";
+import { Alert, PermissionsAndroid } from "react-native";
 
 const AuthContext = React.createContext({});
 
@@ -45,8 +46,10 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await api.post("users/token", data);
+      verifyPermissions();
       if (response.data.data.id && response.data.data.token) {
         const { id, token } = response.data.data;
+
         await AsyncStorage.setItem("@AINAuth:token", token);
         userData(id);
       }
@@ -67,6 +70,61 @@ export const AuthProvider = ({ children }) => {
       setError(null);
     });
   }
+  async function verifyPermissions() {
+    await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION).then(response =>{
+      if(response === true) {
+        return
+      } else {
+        Alert.alert("Ops!", "Você precisa permitir acesso ao seu armazenamento.", [
+          {
+            text: "Ok",
+            onPress: () => requestStoragePermission(),
+          },
+        ]);
+      };
+    }).catch(err => {
+      Alert.alert("Ops!", err, [
+        {
+          text: "Ok",
+          onPress: () => null,
+        },
+      ]);
+      return ;
+    })
+  }
+
+   const requestStoragePermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: "Acesso ao armazenamento?",
+          message:
+            "All In Service precisa ter acesso ao armazenamento." +
+            "Deseja permitir?",
+          buttonNegative: "Cancelar",
+          buttonPositive: "Sim"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        Alert.alert("Permissão concedida!", "Prossiga com o login.", [
+          {
+            text: "Ok",
+            onPress: () => null,
+          },
+        ]);
+      } else {
+        Alert.alert("Não foi possível prosseguir.","A permissão aos arquivos é necessária.", [
+          {
+            text: "Ok",
+            onPress: () => null,
+          },
+        ]);
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
   return (
     <AuthContext.Provider

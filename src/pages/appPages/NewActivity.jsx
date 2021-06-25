@@ -31,7 +31,7 @@ const NewActivities = ({ route }) => {
     if (route) {
       const { id } = route.params;
       api
-        .get(`jobs/${id}`)
+        .get(`jobs/${id}?isEdit=true`)
         .then((response) => {
           setData(response.data);
         })
@@ -50,6 +50,7 @@ const NewActivities = ({ route }) => {
   }, [data]);
 
   async function onSubmit(data) {
+    console.log(token);
     const token = await AsyncStorage.getItem("@AINAuth:token");
     if (token) {
       const { description, name } = data;
@@ -60,7 +61,7 @@ const NewActivities = ({ route }) => {
       };
       const { id } = route.params;
      
-        const results = id ? api.put(`jobs/${id}`, finalData) : api.post("jobs", finalData);
+        const results = id ? api.put(`jobs/${id}?isEdit=true`, finalData) : api.post("jobs", finalData);
         results.then(response => {
           if(response.status === 200) {
             navigation.navigate("Dashboard")
@@ -68,7 +69,7 @@ const NewActivities = ({ route }) => {
         }).catch(err => {
           setError(err.response.data.message);
           setTimeout(() => {
-            setError("")
+            setError(null)
           }, 5000)
         })
     }
